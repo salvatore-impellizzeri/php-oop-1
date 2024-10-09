@@ -19,7 +19,7 @@
             string $description,
             array $genre,
             int $duration,
-            int $rating,
+            float $rating,
             Cast $cast
         ) {
             $this->title = $title;
@@ -45,12 +45,13 @@
         public function getDuration(): int {
             return $this->duration;
         }
-        public function getVote(): int {
+        public function getVote(): float {
             return $this->rating;
         }
     }
     
     class Cast{
+        public $producer;
         public $numbers;
         public $protagonist;
         public $secondary;
@@ -58,14 +59,19 @@
 
         function __construct(
             int $numbers,
+            string $producer,
             array $protagonist,
             array $secondary,
             array $double
         ) {
             $this->numbers = $numbers;
+            $this->producer = $producer;
             $this->protagonist = $protagonist;
             $this->secondary = $secondary;
             $this->double = $double;
+        }
+        public function getProducer(): string {
+            return $this->producer;
         }
         public function getNumbers(): int {
             return $this->numbers;
@@ -80,6 +86,13 @@
             return $this->double;
         }
     }
+
+    $castSherlockHolmes = new Cast(5, "Joel Silver", ["Robert Downey Jr.","Jude Law"], ["Stephen Fry", "Paul Anderson"], ["Mio nonno"] );
+    $castSherlockHolmes2 = new Cast(5, "Joel Silver", ["Robert Downey Jr.","Jude Law"], ["Stephen Fry", "Paul Anderson"], ["Mio nonno"]);
+
+
+    $SherlockHolmes = new Movie("Sherlock Holmes", "A detective story", ["Giallo","Avventura","Commedia","Thriller"], 128, 8.8, $castSherlockHolmes);
+    $SherlockHolmes2 = new Movie("Sherlock Holmes - Gioco di ombre", "A detective story", ["Giallo","Avventura","Commedia","Thriller"], 129, 9.2, $castSherlockHolmes2);
 ?>
 </body>
 </html>

@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie PHP</title>
-</head>
 <?php
     class Movie{
         private $title;
@@ -45,7 +38,7 @@
         public function getDuration(): int {
             return $this->duration;
         }
-        public function getVote(): float {
+        public function getRating(): float {
             return $this->rating;
         }
     }
@@ -76,14 +69,14 @@
         public function getNumbers(): int {
             return $this->numbers;
         }
-        public function getProtagonist(): array {
-            return $this->protagonist;
+        public function getProtagonist(): string {
+            return implode(', ', $this->protagonist);
         }
-        public function getSecondary(): array {
-            return $this->secondary;
+        public function getSecondary(): string {
+            return implode(', ', $this->secondary);
         }
-        public function getDouble(): array {
-            return $this->double;
+        public function getDouble(): string {
+            return implode(', ', $this->double);
         }
     }
 
@@ -93,6 +86,61 @@
 
     $SherlockHolmes = new Movie("Sherlock Holmes", "A detective story", ["Giallo","Avventura","Commedia","Thriller"], 128, 8.8, $castSherlockHolmes);
     $SherlockHolmes2 = new Movie("Sherlock Holmes - Gioco di ombre", "A detective story", ["Giallo","Avventura","Commedia","Thriller"], 129, 9.2, $castSherlockHolmes2);
+
+    $movies = [$SherlockHolmes, $SherlockHolmes2];
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie PHP</title>
+</head>
+<body>
+    <?php 
+        foreach ($movies as $movie) {
+    ?>
+
+        <ul>
+            <li>
+                Titolo: <?php echo $movie->getTitle(); ?>
+            </li>
+            <li>
+                Descrizione: <?php echo $movie->getDescription(); ?>
+            </li>
+            <li>
+                Genere: <?php echo implode(', ', $movie->getGenre()); ?>
+            </li>
+            <li>
+                Durata: <?php echo $movie->getDuration(); ?>
+            </li>
+            <li>
+                Rating: <?php echo $movie->getRating(); ?>
+            </li>
+            <li>
+                <ul>
+                    Cast:
+                        <li>
+                            Produttore: <?php echo $movie->getCast()->getProducer(); ?>
+                        </li>
+                        <li>
+                            Numero di attori: <?php echo $movie->getCast()->getNumbers(); ?>
+                        </li>
+                        <li>
+                            Protagonisti: <?php echo $movie->getCast()->getProtagonist(); ?>
+                        </li>
+                        <li>
+                            Attori secondari: <?php echo $movie->getCast()->getSecondary(); ?>
+                        </li>
+                        <li>
+                            Controfigure: <?php echo $movie->getCast()->getDouble(); ?>
+                        </li>
+                </ul> 
+            </li>
+        </ul>
+
+    <?php      
+        }
+    ?>
 </body>
 </html>

@@ -12,21 +12,21 @@
         private $cast;
         private $description;
         private $duration;
-        private $vote;
+        private $rating;
 
         function __construct(
             string $title,
             string $description,
             array $genre,
             int $duration,
-            int $vote,
+            int $rating,
             Cast $cast
         ) {
             $this->title = $title;
             $this->description = $description;
             $this->genre = $genre;
             $this->duration = $duration;
-            $this->vote = $vote;
+            $this->rating = $rating;
             $this->cast = $cast;
         }
 
@@ -46,7 +46,7 @@
             return $this->duration;
         }
         public function getVote(): int {
-            return $this->vote;
+            return $this->rating;
         }
     }
     

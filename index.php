@@ -118,8 +118,8 @@
                 Rating: <?php echo $movie->getRating(); ?>
             </li>
             <li>
+                Cast:
                 <ul>
-                    Cast:
                         <li>
                             Produttore: <?php echo $movie->getCast()->getProducer(); ?>
                         </li>
@@ -138,6 +138,7 @@
                 </ul> 
             </li>
         </ul>
+        <br>
 
     <?php      
         }
